@@ -2,7 +2,9 @@ const http = require('http');
 const { URL } = require('url');
 const POEM_CORPUS = require('./data/poem-corpus.json');
 
-const PORT = Number(process.env.PORT || 3000);
+//监听端口
+const PORT = 3000;
+
 const IP_LOOKUP_BASE_URL = 'https://whois.pconline.com.cn/ipJson.jsp';
 const IP_LOOKUP_TIMEOUT_MS = Number(process.env.IP_LOOKUP_TIMEOUT_MS || 5000);
 
