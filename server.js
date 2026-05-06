@@ -65,12 +65,19 @@ function normalizeIp(ip) {
   return firstIp.replace(/^::ffff:/, '').replace(/^\[|\]$/g, '');
 }
 
+function getForwardedHeaderIp(forwarded = '') {
+  const match = String(forwarded).match(/(?:^|[,;\s])for=("?)(\[?[a-f\d:.]+\]?|[^;,\s"]+)\1/i);
+  return normalizeIp(match?.[2] || '');
+}
+
 function getClientIp(req) {
-  return normalizeIp(
-    req.headers['x-forwarded-for'] ||
-      req.headers['x-real-ip'] ||
-      req.socket?.remoteAddress ||
-      ''
+  const headers = req.headers || {};
+  return (
+    normalizeIp(headers['x-forwarded-for']) ||
+    normalizeIp(headers['x-real-ip']) ||
+    getForwardedHeaderIp(headers.forwarded) ||
+    normalizeIp(req.socket?.remoteAddress) ||
+    ''
   );
 }
 
