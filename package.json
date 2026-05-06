@@ -1,0 +1,21 @@
+{
+  "name": "location-poems",
+  "version": "1.0.0",
+  "description": "一个根据访问 IP 或传入 IP 查询所在地并返回相关诗句的 API。",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "ip",
+    "poem",
+    "api",
+    "pconline"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}
